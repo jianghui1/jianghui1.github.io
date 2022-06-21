@@ -3,6 +3,7 @@
     <body>
         <div class="container">
             <div id="where">是否在App中</div>
+            <div id="token">jwtToken:</div>
         </div>
         
         <style>
@@ -12,6 +13,9 @@
         <script>
             var hasJwtToken = dsBridge.hasNativeMethod('jwtToken')
             document.getElementById('where').innerText = (hasJwtToken ? '在' : '不在') + 'App内';
+            var jwtToken = dsBridge.call('jwtToken');
+            let token = document.getElementById('token');
+            token.innerText = token.innerText + jwtToken;
         </script>
         
     </body>
