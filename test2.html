@@ -8,6 +8,7 @@
             <div id="sbh">状态栏高度：</div>
             <div id="setWhite">设置状态栏白色</div>
             <div id="setBlack">设置状态栏黑色</div>
+            <div id="close">关闭</div>
         </div>
         
         <style>
@@ -36,6 +37,10 @@
             
             document.getElementById('setBlack').onclick = function() {
                 dsBridge.call("statusBarColor", "0");
+            }
+            
+            document.getElementById('close').onclick = function() {
+                dsBridge.call("close");
             }
         </script>
         
