@@ -4,9 +4,9 @@
         <div class="container">
             <div id="where">是否在App中</div>
             <div id="token">jwtToken:</div>
-            <div onclick='auth'>淘宝授权</div>
+            <div id="auth">淘宝授权</div>
             <div id="sbh">状态栏高度：</div>
-            <div onclick="setsbc">设置状态栏颜色</div>
+            <div id="setsbc">设置状态栏颜色</div>
         </div>
         
         <style>
@@ -22,11 +22,11 @@
             token.innerText = token.innerText + jwtToken;
             
             
-            function auth() {
+            document.getElementById('auth') = function() {
                 alert('淘宝授权');
             }
             
-            function setsbc() {
+            document.getElementById('setsbc') = function() {
                 alert('设置状态栏颜色');
             }
         </script>
