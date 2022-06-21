@@ -4,6 +4,9 @@
         <div class="container">
             <div id="where">是否在App中</div>
             <div id="token">jwtToken:</div>
+            <a onclick='auth'>淘宝授权</a>
+            <div id="sbh">状态栏高度：</div>
+            <a onclick="setsbc">设置状态栏颜色</a>
         </div>
         
         <style>
@@ -13,9 +16,19 @@
         <script>
             var hasJwtToken = dsBridge.hasNativeMethod('jwtToken')
             document.getElementById('where').innerText = (hasJwtToken ? '在' : '不在') + 'App内';
+            
             var jwtToken = dsBridge.call('jwtToken');
             let token = document.getElementById('token');
             token.innerText = token.innerText + jwtToken;
+            
+            
+            function auth() {
+                alert('淘宝授权');
+            }
+            
+            function setsbc() {
+                alert('设置状态栏颜色');
+            }
         </script>
         
     </body>
