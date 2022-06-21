@@ -1,0 +1,18 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
+    <script src="https://cdn.jsdelivr.net/npm/dsbridge@3.1.4/dist/dsbridge.js"></script>
+    <body>
+        <div class="container">
+            <div id="where">是否在App中</div>
+        </div>
+        
+        <style>
+            
+        </style>
+        
+        <script>
+            var hasJwtToken = dsBridge.hasNativeMethod('jwtToken')
+            document.getElementById('where').innerText = (hasJwtToken ? '在' : '不在') + 'App内';
+        </script>
+        
+    </body>
+</html>
