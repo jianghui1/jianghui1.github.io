@@ -6,8 +6,8 @@
             <div id="token">jwtToken:</div>
             <div id="auth">淘宝授权</div>
             <div id="sbh">状态栏高度：</div>
-            <div id="setsbc">设置状态栏颜色</div>
-            <div >测试</div>
+            <div id="setWhite">设置状态栏白色</div>
+            <div id="setBlack">设置状态栏黑色</div>
         </div>
         
         <style>
@@ -22,13 +22,20 @@
             let token = document.getElementById('token');
             token.innerText = token.innerText + jwtToken;
             
+            var h = dsBridge.call("statusBarHeight");
+            let sbh = document.getElementById('sbh');
+            sbh.innerText = sbh.innerText + h;
             
             document.getElementById('auth').onclick = function() {
-                alert('淘宝授权');
+                dsBridge.call("auth","tb");
             }
             
-            document.getElementById('setsbc').onclick = function() {
-                alert('设置状态栏颜色');
+            document.getElementById('setWhite').onclick = function() {
+                dsBridge.call("statusBarColor", "1");
+            }
+            
+            document.getElementById('setBlack').onclick = function() {
+                dsBridge.call("statusBarColor", "0");
             }
         </script>
         
