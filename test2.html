@@ -10,6 +10,7 @@
             <div id="setBlack">设置状态栏黑色</div>
             <div id="close">关闭</div>
             <div id="share">商品分享</div>
+            <div id="isLogin">是否登录</div>
         </div>
         
         <style>
@@ -27,6 +28,9 @@
             var h = dsBridge.call("statusBarHeight");
             let sbh = document.getElementById('sbh');
             sbh.innerText = sbh.innerText + h;
+            
+            let isLogin = dsBridge.call('isLogin');
+            document.getElementById('isLogin').innerText = (isLogin ? '已' : '未') + '登录';
             
             document.getElementById('auth').onclick = function() {
                 dsBridge.call("auth","tb");
