@@ -9,6 +9,7 @@
             <div id="setWhite">设置状态栏白色</div>
             <div id="setBlack">设置状态栏黑色</div>
             <div id="close">关闭</div>
+            <div id="share">商品分享</div>
         </div>
         
         <style>
@@ -42,6 +43,11 @@
             document.getElementById('close').onclick = function() {
                 dsBridge.call("close");
             }
+            
+            document.getElementById('share').onclick = function() {
+                dsBridge.call("itemShare", "{"title":"标题","imageUrl":"图片","link":"商品链接","shareText":"文案"}");
+            }
+            
         </script>
         
     </body>
