@@ -3,14 +3,10 @@
     <body>
         <div class="container">
             <div id="where">是否在App中</div>
-            <div id="token">jwtToken:</div>
-            <div id="auth">淘宝授权</div>
-            <div id="sbh">状态栏高度：</div>
-            <div id="setWhite">设置状态栏白色</div>
-            <div id="setBlack">设置状态栏黑色</div>
-            <div id="close">关闭</div>
-            <div id="share">商品分享</div>
-            <div id="isLogin">是否登录</div>
+            <div id="pic_progress">图片下载进度</div>
+            <div id="video_progress">视频下载进度</div>
+            <button onclick="downloadPic()">下载图片</button>
+            <button onclick="downloadVideo()">下载视频</button>
         </div>
         
         <style>
@@ -18,40 +14,35 @@
         </style>
         
         <script>
-            var hasJwtToken = dsBridge.hasNativeMethod('jwtToken')
-            document.getElementById('where').innerText = (hasJwtToken ? '在' : '不在') + 'App内';
+            var mgApp = window.mgApp
+            document.getElementById('where').innerText = (mgApp ? '在' : '不在') + 'App内';
             
-            var jwtToken = dsBridge.call('jwtToken');
-            let token = document.getElementById('token');
-            token.innerText = token.innerText + jwtToken;
-            
-            var h = dsBridge.call("statusBarHeight");
-            let sbh = document.getElementById('sbh');
-            sbh.innerText = sbh.innerText + h;
-            
-            let isLogin = dsBridge.call('isLogin');
-            document.getElementById('isLogin').innerText = (isLogin ? '已' : '未') + '登录';
-            
-            document.getElementById('auth').onclick = function() {
-                dsBridge.call("auth","tb");
+            function downloadPic() {
+                if (mgApp) {
+                    mgApp.downloadFile(JSON.stringify({'fileUrl':'https://pic.rmb.bdstatic.com/bjh/down/39dbdb1db7e1e9c965a2a23449ec82d6', 'fileExt':'jpeg'}));
+                }
+                else {
+                    console.log(1111)
+                }
             }
-            
-            document.getElementById('setWhite').onclick = function() {
-                dsBridge.call("statusBarColor", 1);
+
+            function downloadVideo() {
+                if (mgApp) {
+                    mgApp.downloadFile(JSON.stringify({'fileUrl':'https://vd2.bdstatic.com/mda-pidaq819sq1wvrvz/sc/cae_h264/1694760819192816129/mda-pidaq819sq1wvrvz', 'fileExt':'mp4'}));
+                }
+                else {
+                    console.log(2222)
+                }
             }
-            
-            document.getElementById('setBlack').onclick = function() {
-                dsBridge.call("statusBarColor", 0);
+
+            function downloadFileProgress(fileUrl, progress) {
+                if (fileUrl == 'https://pic.rmb.bdstatic.com/bjh/down/39dbdb1db7e1e9c965a2a23449ec82d6') {
+                    document.getElementById('pic_progress').innerText = progress
+                }
+                else if (fileUrl == 'https://vd2.bdstatic.com/mda-pidaq819sq1wvrvz/sc/cae_h264/1694760819192816129/mda-pidaq819sq1wvrvz') {
+                    document.getElementById('video_progress').innerText = progress
+                }
             }
-            
-            document.getElementById('close').onclick = function() {
-                dsBridge.call("close");
-            }
-            
-            document.getElementById('share').onclick = function() {
-                dsBridge.call('itemShare', '{"title":"标题","imageUrl":"图片","link":"商品链接","shareText":"文案"}');
-            }
-            
         </script>
         
     </body>
